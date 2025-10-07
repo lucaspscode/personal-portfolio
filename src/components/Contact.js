@@ -20,7 +20,7 @@ export const Contact = () => {
         setFormDetails({
             ...formDetails,
             [category]: value
-        })
+        }) 
     }
 
     const handleSubmit = async (e) => {
