@@ -54,7 +54,7 @@ export const Banner = () => {
                             <div className="social-icon">
                                
                             </div>
-                            <a href="/curriculo.pdf" download="Lucas_Passos_CV.pdf"><button className="vvd" >
+                            <a href="Lucas_Passos_CV.pdf" download="Lucas_Passos_CV.pdf"><button className="vvd" >
                                 <span>
                                     Download CV
                                 </span></button></a>
