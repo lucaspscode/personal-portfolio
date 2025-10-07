@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         if (!SMTP_USER || !SMTP_PASS || !EMAIL_DESTINO) {
             return res.status(500).json({ message: 'Server configuration error: SMTP credentials not set.' });
         }
-        
+         
      
         const contactEmail = nodemailer.createTransport({
             host: SMTP_HOST,
