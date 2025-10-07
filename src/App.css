@@ -270,13 +270,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: #121212;
   font-weight: 700;
   font-size: 20px;
-  margin-top: 60px;
+  margin-top: 20px;
   letter-spacing: 0.8px;
   display: flex;
   align-items: center;
 }
 .banner button svg {
-  font-size: 25px;
+  font-size: 15px;
   margin-left: 10px;
   transition: 0.3s ease-in-out;
   line-height: 1;
