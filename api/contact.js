@@ -1,6 +1,6 @@
 // api/contact.js
 
-const nodemailer = require("nodemailer"); 
+const nodemailer = require("nodemailer");
 
 export default async function handler(req, res) {
     // Define cabeçalhos CORS para garantir a comunicação segura
