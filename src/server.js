@@ -1,52 +1,55 @@
+require('dotenv').config();
+
 const express = require("express");
-const router = express.Router();
 const cors = require("cors");
 const nodemailer = require("nodemailer");
+// Você pode manter o Mailtrap ou mudar para um provedor real como Gmail/SendGrid
+const { MailtrapTransport } = require("mailtrap"); 
 
-// server used to send send emails
 const app = express();
-app.use(cors());
-app.use(express.json());
-app.use("/", router);
-app.listen(5000, () => console.log("Server Running"));
-console.log(process.env.EMAIL_USER);
-console.log(process.env.EMAIL_PASS);
+const router = express.Router();
+const PORT = 5000; // Porta de comunicação do frontend (Contact.js)
 
-const contactEmail = nodemailer.createTransport({
-  service: 'outlook',
-  auth: {
-    user: "dos-passos@outlook.com",
-    pass: ""
-  },
-});
+// --- Configuração do Servidor ---
+app.use(cors()); // Permite que o frontend (localhost:3000) converse com o backend
+app.use(express.json()); // Permite ler o JSON enviado pelo formulário
 
-contactEmail.verify((error) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Ready to Send");
-  }
-});
+// --- Configuração do Nodemailer/Mailtrap ---
+const TOKEN = process.env.MAILTRAP_TOKEN; 
+const EMAIL_DESTINO = process.env.EMAIL_DESTINO;
 
+const contactEmail = nodemailer.createTransport(
+  MailtrapTransport({
+    token: TOKEN,
+  })
+);
+
+// --- Rota de Contato ---
 router.post("/contact", (req, res) => {
-  const name = req.body.firstName + req.body.lastName;
-  const email = req.body.email;
-  const message = req.body.message;
-  const phone = req.body.phone;
-  const mail = {
-    from: name,
-    to: "dos-passos@outlook.com",
-    subject: "Contact Form Submission - Portfolio",
-    html: `<p>Name: ${name}</p>
-           <p>Email: ${email}</p>
-           <p>Phone: ${phone}</p>
-           <p>Message: ${message}</p>`,
+  const { firstName, lastName, email, phone, message } = req.body;
+  
+  // Corpo do email que será enviado para você
+  const mailContent = {
+    from: email, // O email da pessoa que preencheu o formulário
+    to: EMAIL_DESTINO, // SEU EMAIL REAL AQUI
+    subject: "Nova Mensagem de Portfólio - " + firstName + " " + lastName,
+    html: `
+      <p>Você recebeu uma nova mensagem de contato do seu portfólio.</p>
+      <p>Nome: ${firstName} ${lastName}</p>
+      <p>Email: ${email}</p>
+      <p>Telefone: ${phone}</p>
+      <p>Mensagem: ${message}</p>
+    `,
   };
-  contactEmail.sendMail(mail, (error) => {
+
+  contactEmail.sendMail(mailContent, (error) => {
     if (error) {
-      res.json(error);
+      res.json({ code: 500, success: false, message: "Server error: " + error.message });
     } else {
-      res.json({ code: 200, status: "Message Sent" });
+      res.json({ code: 200, success: true, message: "Message sent successfully" });
     }
   });
 });
+
+app.use("/", router);
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

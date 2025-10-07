@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Adicione ou certifique-se que esta linha existe
+.env 

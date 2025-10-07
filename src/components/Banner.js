@@ -49,7 +49,7 @@ export const Banner = () => {
                         <h1>{`Hi! I'm Lucas Passos `}</h1>
                         <h2><span className="wrap">.{text}</span></h2>
                         <p>Desenvolvedor Backend com foco na construção de APIs e sistemas de alta performance. Eu crio a lógica de negócios e a infraestrutura de dados, utilizando PHP, Java e Python para garantir escalabilidade e segurança em cada projeto.</p>
-                        <button onClick={() => console.log('connect')}>Let's Connect <Icon name="bi bi-arrow-right-circle" /></button>
+                        <button onClick={() => console.log('connect')}> <Icon name="bi bi-arrow-right-circle" /></button>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
                         <img src={headerImg} alt="Header Img"/>
