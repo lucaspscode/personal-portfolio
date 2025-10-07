@@ -24,8 +24,10 @@ export const Contact = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setButtonText("Sending...");
+    e.preventDefault();
+    setButtonText("Sending...");
+
+    try {
         let response = await fetch("/api/contact", { 
             method: "POST",
             headers: {
@@ -33,15 +35,39 @@ export const Contact = () => {
             },
             body: JSON.stringify(formDetails),
         });
-        setButtonText("Send");
+        
+        // Vercel pode retornar uma resposta de erro (como 404 ou 500) que é JSON
+        // Mas se houver um erro de rede, o .json() pode falhar.
+        // Vamos checar o status HTTP antes de processar o JSON.
+        
+        if (!response.ok) {
+            // Se a resposta não for 2xx (por exemplo, 404 ou 500), tratamos como falha
+            const errorResult = await response.json().catch(() => ({ message: `Server error: Status ${response.status}` }));
+            setButtonText("Send");
+            setStatus({ success: false, message: errorResult.message || 'Server error or invalid response.' });
+            return; // Sai da função após o erro
+        }
+
+        // Se a resposta for 2xx, processamos o JSON (da Serverless Function)
         let result = await response.json();
+        
+        setButtonText("Send");
         setFormDetails(formInitialDetails);
+        
         if (result.code === 200) {
             setStatus({ success: true, message: 'Message sent successfully' });
         } else {
-            setStatus({ success: false, message: 'Something went wrong, please try again later.' });
+            // Isso captura erros retornados pelo nosso próprio código Serverless (api/contact.js)
+            setStatus({ success: false, message: result.message || 'Something went wrong, please try again later.' });
         }
-    };
+
+    } catch (error) {
+        // Isso captura erros de rede (ex: servidor offline, CORS block, etc.)
+        console.error("Fetch Error:", error);
+        setButtonText("Send");
+        setStatus({ success: false, message: 'Network error or unhandled submission failure. Check browser console.' });
+    }
+};
 
     return (
         <section className="contact" id="connect">
@@ -62,7 +88,7 @@ export const Contact = () => {
                                     <input type="text" value={formDetails.firstName} placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
                                 </Col>
                                 <Col size={12} sm={6} className="px-1">
-                                    <input type="text" value={formDetails.lasttName} placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)} />
+                                    <input type="text" value={formDetails.lastName} placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)} />
                                 </Col>
                                 <Col size={12} sm={6} className="px-1">
                                     <input type="email" value={formDetails.email} placeholder="Email Address" onChange={(e) => onFormUpdate('email', e.target.value)} />
