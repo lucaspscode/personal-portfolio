@@ -48,7 +48,7 @@ export const Banner = () => {
                         <span className="tagline">Welcome to my Portfolio</span>
                         <h1>{`Hi! I'm Lucas Passos `}</h1>
                         <h2><span className="wrap">.{text}</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <p>Desenvolvedor Backend com foco na construção de APIs e sistemas de alta performance. Eu crio a lógica de negócios e a infraestrutura de dados, utilizando PHP, Java e Python para garantir escalabilidade e segurança em cada projeto.</p>
                         <button onClick={() => console.log('connect')}>Let's Connect <Icon name="bi bi-arrow-right-circle" /></button>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
