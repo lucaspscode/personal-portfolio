@@ -30,7 +30,7 @@ export default async function handler(req, res) {
         // 3. Cria o Transportador usando SMTP Padrão
         const contactEmail = nodemailer.createTransport({
             host: SMTP_HOST,
-            port: 587, 
+            port: 2525, 
             auth: {
                 user: SMTP_USER, 
                 pass: SMTP_PASS,
