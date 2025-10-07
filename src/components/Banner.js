@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import headerImg from '../assets/img/header-img.svg';
-import cv from '../assets/lucas_passos_cv.pdf'; 
+import lucas_passos_cv from '../assets/lucas_passos_cv.pdf'; 
 import 'animate.css';
 
 export const Banner = () => {
@@ -54,7 +54,7 @@ export const Banner = () => {
                             <div className="social-icon">
                                
                             </div>
-                            <a href={cv} download="lucas_passos_cv.pdf"><button className="vvd" >
+                            <a href={lucas_passos_cv} download="lucas_passos_cv.pdf"><button className="vvd" >
                                 <span>
                                     Download CV
                                 </span></button></a>
