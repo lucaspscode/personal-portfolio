@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import Icon from '@reacticons/bootstrap-icons';
 import { Container, Row, Col } from 'react-bootstrap';
 import headerImg from '../assets/img/header-img.svg';
+import cv from '../assets/lucas_passos_cv.pdf'; 
 import 'animate.css';
 
 export const Banner = () => {
@@ -9,7 +9,7 @@ export const Banner = () => {
     const [isDeleting, setIsDeleting] = useState(false);
     const toRotate = ["Backend Developer", "Frontend Developer", "Fullstack Developer"];
     const [text, setText] = useState('');
-    const [delta, setDelta] = useState(300 - Math.random() * 100);
+    const [delta, setDelta] = useState(30);
     const period = 2000;
 
     useEffect(() => {
@@ -36,7 +36,7 @@ export const Banner = () => {
         } else if (isDeleting && updatedText === '') {
             setIsDeleting(false);
             setLoopNum(loopNum + 1);
-            setDelta(500);
+            setDelta(50);
         }
     }
 
@@ -46,7 +46,7 @@ export const Banner = () => {
                 <Row className="align-items-center">
                     <Col xs={12} md={6} xl={7}>
                         <span className="tagline">Welcome to my Portfolio</span>
-                        <h1>{`Hi! I'm Lucas Passos `}</h1>
+                        <h1>{`Lucas Passos `}</h1>
                         <h2><span className="wrap">.{text}</span></h2>
                         <p>Desenvolvedor Backend com foco na construção de APIs e sistemas de alta performance. Eu crio a lógica de negócios e a infraestrutura de dados, utilizando PHP, Java e Python para garantir escalabilidade e segurança em cada projeto.</p>
 
@@ -54,7 +54,7 @@ export const Banner = () => {
                             <div className="social-icon">
                                
                             </div>
-                            <a href="Lucas_Passos_CV.pdf" download="Lucas_Passos_CV.pdf"><button className="vvd" >
+                            <a href={cv} download="lucas_passos_cv.pdf"><button className="vvd" >
                                 <span>
                                     Download CV
                                 </span></button></a>
