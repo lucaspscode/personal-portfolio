@@ -473,7 +473,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 /************ Projects Css ************/
 .contact {
-  background: linear-gradient(to bottom, rgba(23, 184, 166, 0.281) -5.91%, rgba(23, 184, 166, 1) 111.58%);
+  /*background: linear-gradient(to bottom, rgba(23, 184, 166, 0.281) -5.91%, rgba(23, 184, 166, 1) 111.58%);*/
+  background-color: #17b8a6;
   padding: 60px 0 200px 0;
 }
 .contact img {
@@ -546,7 +547,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /************ Footer Css ************/
 .footer {
   padding: 0 0 50px 0;
-  background-image: url('./assets/img/footer-bg.png');
+  background-color: #121212;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
