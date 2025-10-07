@@ -4,7 +4,6 @@ import projImg1 from "../assets/img/project-img1.png";
 import projImg2 from "../assets/img/project-img2.png";
 import projImg3 from "../assets/img/project-img3.png";
 import 'animate.css';
-import TrackVisibility from 'react-on-screen';
 
 export const Projects = () => {
 
@@ -85,9 +84,7 @@ export const Projects = () => {
             <Container>
                 <Row>
                     <Col size={12}>
-                        <TrackVisibility>
-                            {({ isVisible }) =>
-                                <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
+                                <div className="animate__animated animate__zoomIn">
                                     <h2>Projects</h2>
                                     <p>My personal and academic projects developed within the academic environment and still in progress during my free time.</p>
                                     <Tab.Container id="projects-tabs" defaultActiveKey="first">
@@ -164,8 +161,7 @@ export const Projects = () => {
                                             </Tab.Pane>
                                         </Tab.Content>
                                     </Tab.Container>
-                                </div>}
-                        </TrackVisibility>
+                                </div>
                     </Col>
                 </Row>
             </Container>
