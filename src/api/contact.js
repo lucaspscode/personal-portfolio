@@ -1,35 +1,33 @@
-// Remove 'dotenv' aqui, pois o Vercel injeta as variáveis automaticamente
-const nodemailer = require("nodemailer");
-const { MailtrapTransport } = require("mailtrap");
+const nodemailer = require("nodemailer"); 
 
-// O Vercel lida com o CORS e o parsing do body por padrão na função.
-// Não precisamos do express.
 export default async function handler(req, res) {
-    // 1. Apenas processamos requisições POST
+
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
 
     try {
-        // As variáveis de ambiente são lidas diretamente do ambiente do Vercel
-        const TOKEN = process.env.MAILTRAP_TOKEN;
-        const EMAIL_DESTINO = process.env.EMAIL_DESTINO;
+        const SMTP_HOST = process.env.MAILTRAP_SMTP_HOST;
+        const SMTP_USER = process.env.MAILTRAP_SMTP_USER;
+        const SMTP_PASS = process.env.MAILTRAP_SMTP_PASS; 
+        const EMAIL_DESTINO = process.env.EMAIL_DESTINO; 
 
-        if (!TOKEN || !EMAIL_DESTINO) {
-            return res.status(500).json({ message: 'Server configuration error: Tokens not set.' });
+        if (!SMTP_USER || !SMTP_PASS || !EMAIL_DESTINO) {
+            return res.status(500).json({ message: 'Server configuration error: SMTP credentials not set.' });
         }
         
-        // 2. Cria o Transportador (Nodemailer)
-        const contactEmail = nodemailer.createTransport(
-            MailtrapTransport({
-                token: TOKEN,
-            })
-        );
+     
+        const contactEmail = nodemailer.createTransport({
+            host: SMTP_HOST,
+            port: 587, 
+            auth: {
+                user: SMTP_USER, 
+                pass: SMTP_PASS,
+            }
+        });
         
-        // 3. Obtém os dados do formulário
         const { firstName, lastName, email, phone, message } = req.body;
         
-        // 4. Cria o conteúdo do e-mail
         const mailContent = {
             from: email,
             to: EMAIL_DESTINO,
@@ -43,10 +41,8 @@ export default async function handler(req, res) {
             `,
         };
 
-        // 5. Envia o e-mail
         await contactEmail.sendMail(mailContent);
 
-        // 6. Retorna sucesso
         return res.status(200).json({ code: 200, success: true, message: "Message sent successfully" });
 
     } catch (error) {
