@@ -52,10 +52,7 @@ export const NavBar = () => {
             </div>
             <a href="https://www.linkedin.com/in/dos-passos/"><button className="vvd" onClick={() => console.log('connect')} >
               <span>
-                <div className="social-icon">
-                  <img src={navIcon1} alt="" />
-                </div>
-                Let's Connect
+                Linkedin
               </span></button></a>
           </span>
         </Navbar.Collapse>
