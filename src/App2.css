@@ -31,17 +31,40 @@
     --spring-accent-gradient: linear-gradient(90.21deg, var(--color-spring-green) -5.91%, var(--color-spring-green) 111.58%);
 }
 
-/* NOVO: Classe para o MODO NOTURNO (Controlado por JS/Botão) */
+/* NOVO: Classe para o MODO NOTURNO */
 body.dark-theme {
     /* Inversão de Cores no Dark Mode */
     --color-bg: #121212; 
     --color-text: #FFFFFF; 
-    --color-section-dark: #FFFFFF; /* Inverte: Fundo de Navbar/Skills/Footer vira claro */
-    --color-section-light: #121212; /* Inverte: Fundo de Projetos vira escuro */
+    --color-section-dark: #FFFFFF; /* Inverte: Skills/Footer/Navbar Scroll ficam claros */
+    --color-section-light: #121212; /* Inverte: Projetos fica escuro */
     --color-text-light: #121212; /* Inverte: Texto em áreas escuras vira escuro */
     --color-text-dark: #FFFFFF; /* Inverte: Texto em áreas claras vira claro */
 }
 
+/* ... (O restante do seu CSS que usa as variáveis) ... */
+body {
+    background-color: var(--color-bg) !important;
+    color: var(--color-text) !important;
+    /* ... */
+}
+/* ... */
+nav.navbar.scrolled {
+    background-color: var(--color-section-dark);
+    /* ... */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Inversão de Cores no Dark Mode */
+        --color-bg: #121212; /* Fundo principal escuro */
+        --color-text: #FFFFFF; /* Texto principal claro */
+        --color-section-dark: #FFFFFF; /* Inverte: Skills/Footer/Navbar Scroll ficam claros */
+        --color-section-light: #121212; /* Inverte: Projetos fica escuro */
+        --color-text-light: #121212; /* Inverte: Texto em áreas escuras vira escuro */
+        --color-text-dark: #FFFFFF; /* Inverte: Texto em áreas claras vira claro */
+    }
+}
 /* FIM DAS VARIÁVEIS CSS */
 
 /************ Default Css ************/
@@ -57,6 +80,7 @@ html {
 }
 
 body {
+  /* IDEAS, */
   font-weight: 400;
   overflow-x: hidden;
   position: relative;
@@ -123,7 +147,7 @@ nav.navbar {
 nav.navbar.scrolled {
   padding: 0px 0;
   /* USO DAS VARIÁVEIS */
-  background-color: var(--color-section-dark); /* REFATORADO */
+  background-color: #121212;
 }
 nav.navbar a.navbar-brand {
     width: 20%;
@@ -131,7 +155,7 @@ nav.navbar a.navbar-brand {
 nav.navbar .navbar-nav .nav-link.navbar-link {
   font-weight: 400;
   /* USO DAS VARIÁVEIS */
-  color: var(--color-text-light) !important; /* REFATORADO */
+  color: #fff !important;
   letter-spacing: 0.8px;
   padding: 0 25px;
   font-size: 18px;
@@ -168,7 +192,7 @@ span.navbar-text {
     height: 42px;
     position: absolute;
     /* USO DAS VARIÁVEIS */
-    background-color: var(--color-section-light); /* REFATORADO */
+    background-color: #ffffff;
     border-radius: 50%;
     transform: scale(0);
 	transition: 0.3s ease-in-out;
@@ -182,7 +206,6 @@ span.navbar-text {
 	transition: 0.3s ease-in-out;
 }
 
-
 .social-icon a:hover img {
 	/* Mantido o filtro, mas ajustado para o novo padrão de cores (inverte cor) */
 	filter: brightness(0) saturate(100%) invert(0%);
@@ -190,8 +213,8 @@ span.navbar-text {
 .navbar-text button {
   font-weight: 700;
   /* USO DAS VARIÁVEIS */
-  color: var(--color-text-light); /* REFATORADO */
-  border: 1px solid var(--color-text-light); /* REFATORADO */
+  color: #fff;
+  border: 1px solid #fff;
   padding: 18px 34px;
   font-size: 18px;
   margin-left: 18px;
@@ -207,14 +230,14 @@ span.navbar-text {
   width: 0%;
   height: 100%;
   position: absolute;
-  background-color: var(--color-section-light); /* REFATORADO */
+  background-color: #fff;
   left: 0;
   top: 0;
   z-index: -1;
   transition: 0.3s ease-in-out;
 }
 .navbar-text button:hover {
-  color: var(--color-text-dark); /* REFATORADO */
+  color: #121212;
 }
 .navbar-text button:hover::before {
 	content: "";
@@ -232,19 +255,19 @@ nav.navbar .navbar-toggler-icon {
   height: 17px;
   background-image: none;
   position: relative;
-  border-bottom: 2px solid var(--color-text-light); /* REFATORADO */
+  border-bottom: 2px solid #fff;
   transition: all 300ms linear;
   top: -2px;
 }
 nav.navbar .navbar-toggler-icon:focus {
-	border-bottom: 2px solid var(--color-text-light); /* REFATORADO */
+	border-bottom: 2px solid #fff;
 }
 nav.navbar .navbar-toggler-icon:after,
 nav.navbar .navbar-toggler-icon:before {
 	width: 24px;
 	position: absolute;
 	height: 2px;
-	background-color: var(--color-text-light); /* REFATORADO */
+	background-color: #fff;
 	top: 0;
 	left: 0;
 	content: '';
@@ -256,12 +279,12 @@ nav.navbar .navbar-toggler-icon:after {
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
 	transform: rotate(45deg);
-	background-color: var(--color-text-light); /* REFATORADO */
+	background-color: #fff;
 	height: 2px;
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
 	transform: translateY(8px) rotate(-45deg);
-	background-color: var(--color-text-light); /* REFATORADO */
+	background-color: #fff;
 	height: 2px;
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
@@ -512,8 +535,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 /************ Contact Css ************/
 .contact {
-  /* USO DAS VARIÁVEIS: Ajustado para o tema Spring */
-  background: linear-gradient(to bottom, var(--color-spring-green) 10%, var(--color-bg) 100%);
+  /*background: linear-gradient(to bottom, rgba(23, 184, 166, 0.281) -5.91%, rgba(23, 184, 166, 1) 111.58%);*/
+  background: linear-gradient(to bottom, #558bff48 -5.91%, #17b8a6  111.58%);
   padding: 60px 0 80px 0;
 }
 .contact img {
@@ -528,9 +551,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   width: 100%;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  /* USO DAS VARIÁVEIS */
   border-radius: 20px;
-  color: var(--color-text-light); /* REFATORADO */
+  color: #fff;
   margin: 0 0 8px 0;
   padding: 18px 26px;
   font-weight: 500;
@@ -539,24 +561,22 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   transition: 0.3s ease-in-out;
 }
 .contact form input:focus, .contact form textarea:focus {
-  /* USO DAS VARIÁVEIS */
-  background: var(--color-section-light); /* REFATORADO */
-  color: var(--color-text-dark); /* REFATORADO */
+  background: rgba(255, 255, 255, 1);
+  color: #121212;
 }
 .contact form input::placeholder, .contact form textarea::placeholder {
   font-size: 16px;
   font-weight: 400;
-  color: var(--color-text-light); /* REFATORADO */
+  color: #fff;
 }
 .contact form input:focus::placeholder, .contact form textarea:focus::placeholder {
-  color: var(--color-text-dark); /* REFATORADO */
+  color: #121212;
   opacity: 0.8;
 }
 .contact form button {
   font-weight: 700;
-  /* USO DAS VARIÁVEIS */
-  color: var(--color-text-dark); /* REFATORADO */
-  background-color: var(--color-section-light); /* REFATORADO */
+  color: #000;
+  background-color: #fff;
   padding: 14px 48px;
   font-size: 18px;
   margin-top: 25px;
@@ -569,11 +589,11 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   position: relative;
 }
 .contact form button:hover {
-  color: var(--color-text-light); /* REFATORADO */
+  color: #fff;
 }
 .contact form button::before {
   content: "";
-  background: var(--color-section-dark); /* REFATORADO */
+  background: #121212;
   width: 0;
   height: 100%;
   position: absolute;
@@ -589,7 +609,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /************ Footer Css ************/
 .footer {
   padding: 20px 0 20px 0;
-  background-color: var(--color-section-dark); /* REFATORADO */
+  background-color: #121212;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -605,9 +625,9 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   letter-spacing: 0.5px;
 }
 .newsletter-bx {
-  background: var(--color-section-light); /* REFATORADO */
+  background: #FFFFFF;
   border-radius: 55px;
-  color: var(--color-text-dark); /* REFATORADO */
+  color: #121212;
   padding: 85px 125px;
   margin-bottom: 80px;
   margin-top: -122px;
@@ -618,7 +638,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   line-height: 1.2em;
 }
 .new-email-bx {
-  background: var(--color-section-light); /* REFATORADO */
+  background: #fff;
   padding: 5px;
   border-radius: 20px;
   position: relative;
@@ -639,7 +659,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .new-email-bx::after {
   content: "";
-  background: var(--color-section-light); /* REFATORADO */
+  background: #fff;
   border-radius: 20px;
   position: absolute;
   z-index: -1;
@@ -650,7 +670,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .new-email-bx input {
   width: 100%;
-  color: var(--color-text-dark); /* REFATORADO */
+  color: #121212;
   font-weight: 500;
   background: transparent;
   border: 0;
@@ -659,136 +679,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .new-email-bx button {
   background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
   padding: 20px 65px;
-  color: var(--color-text-light); /* REFATORADO */
+  color: #fff;
   font-weight: 500;
   letter-spacing: 0.5px;
   border-radius: 18px;
-}
-
-
-/******************************************************************/
-/* REGRAS DE RESPONSIVIDADE (MEDIA QUERIES) */
-/******************************************************************/
-
-/* Tablets e Desktops Menores (Max-width 992px) */
-@media (max-width: 992px) {
-    /* Navbar */
-    nav.navbar a.navbar-brand {
-        width: 30%;
-    }
-    nav.navbar .navbar-nav .nav-link.navbar-link {
-        padding: 0 15px;
-        font-size: 16px;
-    }
-
-    /* Banner */
-    .banner {
-        padding: 150px 0 100px 0; /* Reduz o padding vertical */
-    }
-    .banner h1 {
-        font-size: 50px; /* Reduz o tamanho da fonte */
-    }
-
-    /* Skills */
-    .skill h2, .project h2, .contact h2 {
-        font-size: 40px;
-    }
-    .skill-slider {
-        width: 100%;
-    }
-
-    /* Projects */
-    .project .nav.nav-pills .nav-item {
-        width: 33.33%; /* Exibe 3 itens na linha em vez de 4 */
-    }
-
-    /* Footer */
-    .newsletter-bx {
-        padding: 50px 75px; /* Reduz o padding */
-        margin-top: -80px;
-    }
-}
-
-/* Celulares (Max-width 576px) */
-@media (max-width: 576px) {
-    /* Navbar */
-    nav.navbar a.navbar-brand {
-        width: 40%;
-    }
-    .navbar-text {
-        flex-direction: column; /* Coloca botões e ícones em colunas */
-        align-items: flex-start;
-        width: 100%;
-        margin-top: 15px;
-    }
-    .social-icon {
-        margin-left: 0;
-        margin-bottom: 10px;
-    }
-    .navbar-text button {
-        margin-left: 0;
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    /* Banner */
-    .banner {
-        padding: 120px 0 60px 0;
-    }
-    .banner h1 {
-        font-size: 36px; /* Ajuste dramático para caber na tela */
-    }
-    .banner p {
-        font-size: 16px;
-        width: 100%;
-    }
-
-    /* Skills */
-    .skill h2, .project h2, .contact h2 {
-        font-size: 30px;
-    }
-    .skill-bx {
-        padding: 40px 20px;
-    }
-    .skill p {
-        margin-bottom: 40px;
-    }
-
-    /* Projects */
-    .project p {
-        width: 100%;
-    }
-    .project .nav.nav-pills {
-        border-radius: 10px;
-    }
-    .project .nav.nav-pills .nav-item {
-        width: 50%; /* Exibe 2 itens na linha */
-    }
-
-    /* Contact */
-    .contact img {
-        margin-bottom: 30px;
-    }
-    .contact form button {
-        width: 100%;
-        text-align: center;
-    }
-
-    /* Footer */
-    .newsletter-bx {
-        padding: 40px 20px;
-        margin-top: -60px;
-        border-radius: 30px;
-    }
-    .newsletter-bx h3 {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-    .new-email-bx button {
-        padding: 15px 30px;
-    }
-    .footer img {
-        width: 50%;
-    }
 }
