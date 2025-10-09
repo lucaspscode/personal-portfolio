@@ -335,7 +335,6 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: var(--color-text);
   font-weight: 700;
   font-size: 20px;
-  margin-top: 20px;
   letter-spacing: 0.8px;
   display: flex;
   align-items: center;
@@ -538,7 +537,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .contact {
   /*background: linear-gradient(to bottom, rgba(23, 184, 166, 0.281) -5.91%, rgba(23, 184, 166, 1) 111.58%);*/
   background: linear-gradient(to bottom, #558bff48 -5.91%, #17b8a6  111.58%);
-  padding: 60px 0 200px 0;
+  padding: 60px 0 80px 0;
 }
 .contact img {
   width: 92%;
