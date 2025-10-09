@@ -441,8 +441,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   width: 100%;
   margin: 0 auto;
   border-radius: 50px;
-  /* USO DAS VARIÁVEIS (Opacidade do Spring Green) */
-  background-color: rgba(109, 179, 63, 0.144);
+  background-color: rgba(63, 100, 179, 0.144);
   overflow: hidden;
 }
 .project .nav.nav-pills .nav-item {
