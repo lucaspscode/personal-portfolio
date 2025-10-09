@@ -1,8 +1,8 @@
-import './App.css';
+
+import './App2.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { NavBar } from './components/NavBar';
 import { Banner } from './components/Banner';
-import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -13,7 +13,6 @@ function App() {
       <NavBar />
       <Banner />      
       <Projects />
-      <Skills />
       <Contact />
       <Footer />
     </div>
